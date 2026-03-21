@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=4 uid="uid://couati0aimbh1"]
+
+[ext_resource type="Script" uid="uid://m30eyqp8dcbb" path="res://scenes/dice/dice.gd" id="1_ck77b"]
+[ext_resource type="Texture2D" uid="uid://bowy2an083lpo" path="res://scenes/dice/DiceUVs.png" id="2_wcb7a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4phxv"]
+size = Vector3(20, 2, 20)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wcb7a"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5gb4"]
+resource_name = "Material.002"
+cull_mode = 2
+albedo_texture = ExtResource("2_wcb7a")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_o6to4"]
+_surfaces = [{
+"aabb": AABB(-0.894425, -1, -0.85064, 1.78885, 2, 1.70128),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAgAEAAAAAgADAAUAAgAFAAQAAwAGAAUABAAFAAcABQAGAAcAAAAEAAgABAAHAAgAAAAJAAEAAAAIAAkAAQAKAAMACgAGAAMACQAKAAEABwAGAAsACAAHAAsACwAGAAoACAALAAkACQALAAoA"),
+"name": "Material.002",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("/38AAP9/AAByWMFG//8AAIznwUYazwAAjKc9uf//AACM58FG5DAAAP//Pbn/fwAA/3////9/AACMpz25AAAAAHJYwUYAAAAAAADBRv9/AAByGD25Gs8AAHIYPbnkMAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rg4js"]
+resource_name = "dice_Icosphere"
+_surfaces = [{
+"aabb": AABB(-0.894425, -1, -0.85064, 1.78885, 2, 1.70128),
+"attribute_data": PackedByteArray("iy7//0UXr9fRRa/X0UWv11x0r9cWXf//uej//3PRr9f//6/XLbr//+iir9dz0a/Xoov//1x0r9fooq/X0UWv1xZdYK9cdK/XRRev14suYK/RRa/Xc9Gv17noYK///6/X6KKv1y26YK9z0a/XXHSv16KLYK/ooq/X0UWv14suYK8WXWCvRRev1wAAYK+LLmCvc9Gv1y26YK+56GCv6KKv16KLYK8tumCvXHSv1xZdYK+ii2Cviy5gr9FFEYcWXWCvAABgr0UXEYeLLmCvLbpgr3PREYe56GCvootgr+iiEYctumCvFl1gr1x0EYeii2Cv"),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcAGAAZABoAGwAcAB0AHgAfACAAIQAiACMAJAAlACYAJwAoACkAKgArACwALQAuAC8AMAAxADIAMwA0ADUANgA3ADgAOQA6ADsA"),
+"material": SubResource("StandardMaterial3D_r5gb4"),
+"name": "Material.002",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 60,
+"vertex_data": PackedByteArray("/38AAP9/ZadyWMFG//9lp4znwUYaz2WnjOfBRhrPDciM58FG5DANyP9/AAD/fw3I/38AAP9/nLQAAMFG/3+ctHJYwUb//5y0/38AAP9/2N1yWMFGAADY3QAAwUb/f9jd/38AAP9/iPSM58FG5DCI9HJYwUYAAIj0jOfBRhrPW8D//z25/39bwIznwUbkMFvAcljBRv//6Y6Mpz25///pjoznwUYaz+mOAADBRv9/GadyGD25Gs8Zp3JYwUb//xmncljBRgAAyNlyGD255DDI2QAAwUb/f8jZjOfBRuQwQfOMpz25AABB83JYwUYAAEHzjOfBRhrPGaeMpz25//8Zp///Pbn/fxmncljBRv//6Y5yGD25Gs/pjoynPbn//+mOAADBRv9/W8ByGD255DBbwHIYPbkaz1vAcljBRgAAQfOMpz25AABB83IYPbnkMEHzjOfBRuQwyNn//z25/3/I2YynPbkAAMjZjKc9uf//nLT/f////3+ctP//Pbn/f5y0chg9uRrPZaf/f////39lp4ynPbn//2Wnchg9ueQwDcj/f////38NyHIYPbkazw3IjKc9uQAAiPT/f////3+I9HIYPbnkMIj0//89uf9/2N3/f////3/Y3YynPbkAANjdbylFZG8pRWRvKUVkLWCkPy1gpD8tYKQ/7DOZzewzmc3sM5nNSkmH7UpJh+1KSYftn3mdLp95nS6feZ0uz3VfFM91XxTPdV8UzFJcNMxSXDTMUlw092Nt7fdjbe33Y23t/2+Y+v9vmPr/b5j6RH6lDER+pQxEfqUMB5yREgeckRIHnJESMq2iyzKtossyraLLL4qf6y+Kn+svip/ruoFZ87qBWfO6gVnz/49mBf+PZgX/j2YFEsxlMhLMZTISzGUyj9a5m4/WuZuP1rmb0Z9awNGfWsDRn1rAX4Zh0V+GYdFfhmHRtLZ3ErS2dxK0tncS")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_o6to4")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wcb7a"]
+points = PackedVector3Array(-0.894425, -0.4473375, -0.00016659498, -0.00017511845, -1, -0.00016659498, -0.2764873, -0.4473375, 0.8506399, -0.72369975, 0.44714177, 0.5255715, -0.72369975, 0.44714177, -0.5257382, -0.2764873, -0.4473375, -0.85064, 0.72352463, -0.4473375, -0.5257382, 0.72352463, -0.4473375, 0.5255715, 0.27631217, 0.44714177, 0.8506399, -0.00017511845, 1, -0.00016659498, 0.27631217, 0.44714177, -0.85064, 0.894425, 0.44714177, -0.00016659498)
+
+[node name="DiceScene" type="Node3D" node_paths=PackedStringArray("the_dice", "the_camera")]
+script = ExtResource("1_ck77b")
+the_dice = NodePath("Dice")
+the_camera = NodePath("Camera3D")
+
+[node name="StaticBody3DFloor" type="StaticBody3D" parent="."]
+
+[node name="Floor" type="CollisionShape3D" parent="StaticBody3DFloor"]
+shape = SubResource("BoxShape3D_4phxv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_wcb7a")
+
+[node name="Wall-1" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-0.057494372, -0.99834585, 0, 0.99834585, -0.057494372, 0, 0, 0, 1, -10, 10, 0)
+shape = SubResource("BoxShape3D_4phxv")
+
+[node name="Wall-2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.0048694056, -0.99998814, 0, 0.99998814, 0.0048694056, 0, 0, 0, 1, 10, 10, 0)
+shape = SubResource("BoxShape3D_4phxv")
+
+[node name="Wall-3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 0.9991272, -0.041771073, 1.8258697e-09, 0.041771073, 0.9991272, -4.3673236e-08, 0, 10, 10)
+shape = SubResource("BoxShape3D_4phxv")
+
+[node name="Wall-4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 0.9971576, 0.07534417, -3.2934002e-09, -0.07534417, 0.9971576, -4.3587143e-08, 0, 10, -10)
+shape = SubResource("BoxShape3D_4phxv")
+
+[node name="Ceiling" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.229279, 0)
+shape = SubResource("BoxShape3D_4phxv")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 11.965395, 0)
+projection = 1
+current = true
+size = 20.427654
+
+[node name="Dice" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9820115, 0.18882121, 0, -0.18882123, 0.98201144, 0, 8.105566, -7.1357555)
+mass = 5.0
+gravity_scale = 2.0
+
+[node name="DiceMesh" type="MeshInstance3D" parent="Dice"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("ArrayMesh_rg4js")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dice"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_wcb7a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8221043, 0.5693369, 0, -0.5693369, 0.8221043, 0, 2.8869653, 0)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.6996384, 0.7144971, 0, -0.7144971, -0.6996384, 0, 2.8869653, -4.827214)
+light_color = Color(0.48126268, 0.37256065, 0.28200275, 1)

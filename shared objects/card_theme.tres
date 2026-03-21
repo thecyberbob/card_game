@@ -1,0 +1,22 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://ckjb04eq3jg7i"]
+
+[ext_resource type="FontFile" uid="uid://cmsrqhiecj0jv" path="res://shared objects/fonts/OLDSH___.TTF" id="1_8maer"]
+[ext_resource type="FontFile" uid="uid://bmydci6qhqied" path="res://shared objects/fonts/OLDSIH__.TTF" id="2_p8qm7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8qm7"]
+bg_color = Color(0.21854621, 0.7179883, 0, 1)
+
+[resource]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_p8qm7")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/selection_color = Color(0.2627451, 0.44313726, 1, 0)
+RichTextLabel/font_sizes/bold_font_size = 12
+RichTextLabel/font_sizes/bold_italics_font_size = 12
+RichTextLabel/font_sizes/italics_font_size = 12
+RichTextLabel/font_sizes/mono_font_size = 12
+RichTextLabel/font_sizes/normal_font_size = 12
+RichTextLabel/fonts/bold_font = ExtResource("1_8maer")
+RichTextLabel/fonts/bold_italics_font = ExtResource("1_8maer")
+RichTextLabel/fonts/italics_font = ExtResource("2_p8qm7")
+RichTextLabel/fonts/mono_font = ExtResource("1_8maer")
+RichTextLabel/fonts/normal_font = ExtResource("1_8maer")

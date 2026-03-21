@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1e3nmjdcygm4"]
+
+[ext_resource type="PackedScene" uid="uid://g88tqr0yhnum" path="res://object_scenes/ships/ship1/ship1.tscn" id="1_764e3"]
+
+[node name="Combat" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Ships" type="Node2D" parent="."]
+
+[node name="Player Ship" parent="Ships" instance=ExtResource("1_764e3")]
+position = Vector2(-394, 0)
+
+[node name="Enemy Ship" parent="Ships" instance=ExtResource("1_764e3")]
+position = Vector2(431, 0)

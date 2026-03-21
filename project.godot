@@ -1,0 +1,33 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="seabattle"
+run/main_scene="uid://d36read3dcv25"
+config/features=PackedStringArray("4.5", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+SteamHandler="*res://Global Scripts/SteamHandler.gd"
+PlayersData="*res://Global Scripts/players_data.gd"
+MyData="*res://Global Scripts/my_data.gd"
+
+[filesystem]
+
+import/blender/enabled=false
+
+[shader_globals]
+
+ocean_pos={
+"type": "vec3",
+"value": Vector3(0, 0, 0)
+}

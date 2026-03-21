@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ggg7o4t5jbfp"]
+
+[ext_resource type="PackedScene" uid="uid://dueth21bj2okc" path="res://scenes/ocean combat/water_plane_big.tscn" id="1_jwtj2"]
+[ext_resource type="Script" uid="uid://btchkn2uuskrk" path="res://scenes/ocean combat/water_plane_big.gd" id="2_mr0vr"]
+[ext_resource type="PackedScene" uid="uid://qhhjxjfuou50" path="res://scenes/ships/paddlewheeler/export/paddlewheeler.gltf" id="4_xpgqn"]
+
+[sub_resource type="Environment" id="Environment_mr0vr"]
+ambient_light_source = 3
+ambient_light_color = Color(0.078840725, 0.4187988, 0.7025305, 1)
+
+[node name="TestOcean" type="Node3D"]
+
+[node name="Ocean" type="Node3D" parent="."]
+
+[node name="WaterPlane" parent="Ocean" instance=ExtResource("1_jwtj2")]
+script = ExtResource("2_mr0vr")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9851693, 0.17158522, 0, -0.17158522, 0.9851693, -0.20921183, 1.4859022, 4.4148026)
+current = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mr0vr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8712738, 0.49079728, 0, -0.49079728, 0.8712738, 0, 3.22397, 0)
+
+[node name="paddlewheeler" parent="." instance=ExtResource("4_xpgqn")]
+transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, -0.8527446, 0.5015614, 0)

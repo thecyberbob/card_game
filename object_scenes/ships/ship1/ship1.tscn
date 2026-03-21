@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://g88tqr0yhnum"]
+
+[ext_resource type="Texture2D" uid="uid://dhjkvg5ia5u6" path="res://object_scenes/ships/ship1/graphics/Side.png" id="1_7c8p2"]
+[ext_resource type="Script" uid="uid://dkkbwc2taqx35" path="res://object_scenes/ships/ship1/ship_1.gd" id="2_xl0ma"]
+[ext_resource type="Texture2D" uid="uid://bwf0japl63l3p" path="res://object_scenes/ships/ship1/graphics/Bow.png" id="3_xl0ma"]
+
+[node name="Ship1" type="Node2D" node_paths=PackedStringArray("ship_pic")]
+script = ExtResource("2_xl0ma")
+ship_pic = NodePath("ShipPic")
+graphics = Array[CompressedTexture2D]([ExtResource("3_xl0ma"), ExtResource("1_7c8p2"), ExtResource("1_7c8p2"), ExtResource("3_xl0ma")])
+
+[node name="ShipPic" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_7c8p2")

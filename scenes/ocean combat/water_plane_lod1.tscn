@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://nd64p7yjegxq"]
+
+[ext_resource type="Shader" uid="uid://bjpn46f020wn1" path="res://scenes/ocean combat/water_shader.gdshader" id="1_igidi"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_k6yoh"]
+size = Vector2(10.05, 10.05)
+subdivide_width = 99
+subdivide_depth = 99
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lrqxt"]
+noise_type = 4
+frequency = 0.002
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k6yoh"]
+noise = SubResource("FastNoiseLite_lrqxt")
+seamless = true
+as_normal_map = true
+bump_strength = 14.5
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0681h"]
+noise_type = 4
+seed = 10
+fractal_type = 2
+fractal_weighted_strength = 0.55
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c6t10"]
+noise = SubResource("FastNoiseLite_0681h")
+seamless = true
+as_normal_map = true
+bump_strength = 14.3
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s0ku5"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_480o7"]
+noise = SubResource("FastNoiseLite_s0ku5")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0681h"]
+render_priority = 0
+shader = ExtResource("1_igidi")
+shader_parameter/albedo = Color(0, 0.35686275, 0.47843137, 1)
+shader_parameter/albedo2 = Color(0, 0.4745098, 0.7647059, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.02
+shader_parameter/wave = SubResource("NoiseTexture2D_480o7")
+shader_parameter/noise_scale = 15.0
+shader_parameter/height_scale = 0.5
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_k6yoh")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_c6t10")
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_direction2 = Vector2(0, 1)
+shader_parameter/time_scale = 0.025
+shader_parameter/color_deep = Color(0, 0, 0, 1)
+shader_parameter/color_shallow = Color(0.2901961, 0.6431373, 0.9647059, 1)
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = -0.75
+shader_parameter/edge_scale = 0.31
+shader_parameter/near = 1.0
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(1, 1, 1, 1)
+
+[node name="WaterPlane_LOD1" type="MeshInstance3D"]
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_k6yoh")
+surface_material_override/0 = SubResource("ShaderMaterial_0681h")

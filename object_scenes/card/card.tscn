@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwo8yt4ld0sp2"]
+
+[ext_resource type="Script" uid="uid://q868h0a44cm3" path="res://object_scenes/card/card.gd" id="1_40367"]
+[ext_resource type="Theme" uid="uid://ckjb04eq3jg7i" path="res://shared objects/card_theme.tres" id="1_bmr72"]
+[ext_resource type="Texture2D" uid="uid://3xjfwxhpvkeu" path="res://object_scenes/card/sprites/CardSprite.png" id="1_pwg1m"]
+[ext_resource type="Texture2D" uid="uid://bvn8qtshply57" path="res://icon.svg" id="2_40367"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40367"]
+size = Vector2(161, 224)
+
+[node name="Card" type="Node2D" node_paths=PackedStringArray("card_text")]
+script = ExtResource("1_40367")
+card_text = NodePath("Bottom Text/RichTextLabel")
+
+[node name="Bottom Text" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = 18.0
+offset_right = 76.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Bottom Text"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -76.5
+offset_top = -94.0
+offset_right = 76.5
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(1, 0.98039216, 0.94509804, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Bottom Text"]
+custom_minimum_size = Vector2(140, 70)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -35.0
+offset_right = 70.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_bmr72")
+bbcode_enabled = true
+
+[node name="Top Graphic" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.0
+offset_top = -112.0
+offset_right = 77.0
+offset_bottom = 14.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Top Graphic"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -77.5
+offset_right = 75.5
+offset_bottom = 127.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(1, 0.98039216, 0.94509804, 1)
+
+[node name="Graphic" type="Sprite2D" parent="Top Graphic/ColorRect"]
+position = Vector2(77, 65)
+texture = ExtResource("2_40367")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pwg1m")
+
+[node name="ClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_40367")
+
+[connection signal="input_event" from="ClickArea" to="." method="_on_click_area_input_event"]

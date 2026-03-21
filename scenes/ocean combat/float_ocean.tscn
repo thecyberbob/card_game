@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://k4k7cw2l4n2j"]
+
+[ext_resource type="PackedScene" uid="uid://dueth21bj2okc" path="res://scenes/ocean combat/water_plane_big.tscn" id="1_x6jlo"]
+[ext_resource type="Script" uid="uid://rkaopy2boa5g" path="res://scenes/ocean combat/bobber.gd" id="2_gsqat"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g7nxu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vesmi"]
+
+[node name="FloatOcean" type="Node3D"]
+
+[node name="WaterPlane" parent="." instance=ExtResource("1_x6jlo")]
+
+[node name="Bobber" type="RigidBody3D" parent="."]
+script = ExtResource("2_gsqat")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bobber"]
+mesh = SubResource("BoxMesh_g7nxu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bobber"]
+shape = SubResource("BoxShape3D_vesmi")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8496995, 0.5272673, 0, -0.5272673, 0.8496995, 0, 1.8901303, 3.1363099)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.89917624, 0.43758664, 0, -0.43758664, 0.89917624, 0, 2.8513725, 5.8909554)

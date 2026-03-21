@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2pcxgjjftiur"]
+
+[ext_resource type="Script" uid="uid://c3uvj12orhkgi" path="res://object_scenes/actor_icon/actor_icon.gd" id="1_1sknb"]
+[ext_resource type="Texture2D" uid="uid://bvn8qtshply57" path="res://icon.svg" id="2_s65ol"]
+[ext_resource type="Theme" uid="uid://ckjb04eq3jg7i" path="res://shared objects/card_theme.tres" id="3_716vj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1sknb"]
+font_size = 9
+
+[node name="ActorIcon" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1sknb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_s65ol")
+
+[node name="LifeBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -6.0
+offset_right = 64.0
+grow_vertical = 0
+theme = ExtResource("3_716vj")
+value = 50.0
+show_percentage = false
+
+[node name="NameLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 23.0
+text = "Name"
+label_settings = SubResource("LabelSettings_1sknb")
+horizontal_alignment = 1
