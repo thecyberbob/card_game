@@ -25,6 +25,10 @@ MyData="*res://Global Scripts/my_data.gd"
 
 import/blender/enabled=false
 
+[rendering]
+
+anti_aliasing/quality/screen_space_aa=1
+
 [shader_globals]
 
 ocean_pos={

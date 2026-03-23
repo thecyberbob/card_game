@@ -32,42 +32,41 @@ func _physics_process(delta: float) -> void:
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	submerged = false
 	
-	var force_per_probe = float_force / depth_probes.size()
-	
 	for p in depth_probes:
-		var depth = water.get_height(p.global_position) - p.global_position.y
+		# var depth = water.get_height(p.global_position) - p.global_position.y
+		var raw_depth = water.get_height(p.global_position) - p.global_position.y
+		var depth = lerp(smoothed_depths.get(p, raw_depth), raw_depth, 0.05)
+		smoothed_depths[p] = depth
 		
 		if depth > 0.05:
 			submerged = true
 			
 			var max_depth = 0.9
 			
+			var normalized_depth = clampf(depth / max_depth, 0.0, 1.0)
 			
-			
-			depth = clampf(depth, 0.0, 1.0)
-			var normalized_depth = pow(clampf(depth / max_depth, 0.0, 1.0), 0.8)
 			var r = p.global_position - global_position
-			var point_vel = state.linear_velocity + state.angular_velocity.cross(r)
 			
-			var damping = -point_vel.y * 20
-			var force = normalized_depth * (self.mass * gravity * buoyancy_scale / depth_probes.size()) + damping
+			var force = normalized_depth * (mass * gravity * buoyancy_scale / depth_probes.size())
 			
 			state.apply_force(Vector3.UP * force, r)
-			
-			#var angular_damping = -state.angular_velocity * 5.0
-			#state.apply_torque(angular_damping)
-			
-			var pitch_rate = state.angular_velocity.z  # assuming X is pitch
-			state.apply_torque(Vector3(-pitch_rate * 50.0, 0, 0))
-			
-			#state.apply_torque(-state.angular_velocity * 8)
-			
-			var horizontal_vel = state.linear_velocity
-			horizontal_vel.y = 0
 
-			var water_resistance = -horizontal_vel * 2.0
-			state.apply_central_force(water_resistance)
-	
+	#central vertical damping (replaces per-probe damping)
+	var vertical_vel = state.linear_velocity.y
+	state.apply_central_force(Vector3.UP * -vertical_vel * 2000.0)
+
+	#general angular damping
+	state.apply_torque(-state.angular_velocity * 8)
+
+	#extra pitch damping
+	var pitch_rate = state.angular_velocity.x
+	state.apply_torque(Vector3(-pitch_rate * 50.0, 0, 0))
+
+	#horizontal drag
+	var hv = state.linear_velocity
+	hv.y = 0
+	state.apply_central_force(-hv * 2.0)
+
 	if submerged:
 		state.linear_velocity *= 1.0 - water_drag
 		state.angular_velocity *= 1.0 - water_angular_drag
