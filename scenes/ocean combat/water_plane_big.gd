@@ -39,6 +39,6 @@ func get_height(world_position: Vector3) -> float:
 	
 	var height_val = noise.get_pixelv(pixel_pos).r * height_scale
 	
-	print("get_height: ", world_position, " height: ", height_val)
+	# print("get_height: ", world_position, " height: ", height_val)
 	
 	return height_val

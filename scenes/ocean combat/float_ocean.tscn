@@ -12,7 +12,9 @@
 [node name="WaterPlane" parent="." instance=ExtResource("1_x6jlo")]
 
 [node name="Bobber" type="RigidBody3D" parent="."]
+mass = 2.0
 script = ExtResource("2_gsqat")
+float_force = 4.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Bobber"]
 mesh = SubResource("BoxMesh_g7nxu")

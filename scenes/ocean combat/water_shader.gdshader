@@ -69,7 +69,7 @@ float waveheight(vec2 offset, int mode)
 
 void vertex() {
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	height = texture(wave, world_pos.xz / noise_scale + wave_time * time_scale).r;
+	height = texture(wave, world_pos.xz / noise_scale + wave_time * time_scale * wave_speed).r;
 	VERTEX.y += height * height_scale;
 }
 
@@ -105,7 +105,7 @@ void fragment() {
 	vec3 depth_color_adj = mix(edge_color, color, step(edge_scale, z_diff));
 
 	//Set pixel shader values
-	//ALBEDO = mix(surface_colour, color, 0.75);
+	
 	ALBEDO = clamp(surface_colour + depth_color_adj, vec3(0.0), vec3(1.0));
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
