@@ -1,0 +1,5 @@
+{"Attack Cards": [
+	{"name": "Boom!", "act on": "health", "target": "enemy", "text": "Shoot a gun at the enemy!", "rules":[
+		{"max value": "10", "min value": "0", "action": "subtract"}
+	]}]
+}

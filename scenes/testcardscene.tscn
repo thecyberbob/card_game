@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://d36read3dcv25"]
+[gd_scene load_steps=11 format=3 uid="uid://d36read3dcv25"]
 
 [ext_resource type="Script" uid="uid://ci6s0re8pbxhs" path="res://scenes/testcardscene.gd" id="1_7mlny"]
 [ext_resource type="PackedScene" uid="uid://bwo8yt4ld0sp2" path="res://object_scenes/card/card.tscn" id="2_f7rsp"]
 [ext_resource type="PackedScene" uid="uid://d2pcxgjjftiur" path="res://object_scenes/actor_icon/actor_icon.tscn" id="3_sn013"]
 [ext_resource type="PackedScene" uid="uid://couati0aimbh1" path="res://scenes/dice/dice_scene.tscn" id="4_5b8fk"]
 [ext_resource type="PackedScene" uid="uid://ggg7o4t5jbfp" path="res://scenes/ocean combat/test_ocean.tscn" id="5_56jxf"]
+[ext_resource type="Script" uid="uid://b3nsyp77m048m" path="res://scenes/ocean_battle_sub_viewport.gd" id="5_ukqhk"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5b8fk"]
 viewport_path = NodePath("SubViewport")
@@ -115,14 +116,15 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SubViewport2" type="SubViewport" parent="SubViewportContainer"]
+[node name="Ocean Battle SubViewport" type="SubViewport" parent="SubViewportContainer"]
 world_3d = SubResource("World3D_56jxf")
 handle_input_locally = false
 msaa_3d = 2
 screen_space_aa = 1
-size = Vector2i(1152, 648)
+size = Vector2i(1152, 915)
 render_target_update_mode = 4
+script = ExtResource("5_ukqhk")
 
-[node name="TestOcean" parent="SubViewportContainer/SubViewport2" instance=ExtResource("5_56jxf")]
+[node name="TestOcean" parent="SubViewportContainer/Ocean Battle SubViewport" instance=ExtResource("5_56jxf")]
 
 [connection signal="pressed" from="CanvasLayer/Control/Card Plank/EndTurn" to="." method="_on_end_turn_pressed"]

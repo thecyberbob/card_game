@@ -15,6 +15,8 @@ var whos_turn : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_tree().root.size_changed.connect(on_viewport_size_changed)
+	
 	var num_cards : int = 5
 	
 	var pos_array = make_targets(num_cards)
@@ -27,6 +29,17 @@ func _ready() -> void:
 	for i in range(0, num_cards):
 		create_card(start_pos, pos_array[i])
 	
+
+func on_viewport_size_changed():
+	move_cards()
+
+func move_cards():
+	var pos_array = make_targets(cards.size())
+	var i_int = 0
+	for i in cards:
+		i.target_pos = pos_array[i_int]
+		i_int += 1
+		i.move_card = true
 
 func add_actor(actor_name: String):
 	var a = actor.new()
@@ -93,12 +106,7 @@ func remove_card(c : SingleCard):
 		
 	c.queue_free()
 	
-	var pos_array = make_targets(cards.size())
-	var i_int = 0
-	for i in cards:
-		i.target_pos = pos_array[i_int]
-		i_int += 1
-		i.move_card = true
+	move_cards()
 
 func make_start_pos() -> Vector2:
 	var mid_point = card_plank.size.x / 2
