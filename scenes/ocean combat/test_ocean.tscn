@@ -1,8 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ggg7o4t5jbfp"]
+[gd_scene load_steps=17 format=3 uid="uid://ggg7o4t5jbfp"]
 
 [ext_resource type="PackedScene" uid="uid://dueth21bj2okc" path="res://scenes/ocean combat/water_plane_big.tscn" id="1_jwtj2"]
 [ext_resource type="Script" uid="uid://rkaopy2boa5g" path="res://scenes/ocean combat/bobber.gd" id="2_mr0vr"]
+[ext_resource type="ArrayMesh" uid="uid://cgcdjav7lije2" path="res://scenes/ships/smoke/smoke_cloude.obj" id="4_7i53r"]
+[ext_resource type="Shader" uid="uid://b5c3aah0euclb" path="res://scenes/ocean combat/smoke_shader.tres" id="4_tur5m"]
 [ext_resource type="PackedScene" uid="uid://qhhjxjfuou50" path="res://scenes/ships/paddlewheeler/export/paddlewheeler.gltf" id="4_xpgqn"]
+[ext_resource type="Texture2D" uid="uid://brrd4rxldhxx" path="res://scenes/ships/smoke/T_Noise_001R.png" id="5_shwxl"]
 
 [sub_resource type="Environment" id="Environment_mr0vr"]
 ambient_light_source = 3
@@ -10,32 +13,52 @@ ambient_light_color = Color(0.078840725, 0.4187988, 0.7025305, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jwtj2"]
 
-[sub_resource type="Curve" id="Curve_mr0vr"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.48535562, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_estox"]
+render_priority = 0
+shader = ExtResource("4_tur5m")
+shader_parameter/Texture_Scale = Vector2(0.5, 0.5)
+shader_parameter/Disolver_Texture = ExtResource("5_shwxl")
+
+[sub_resource type="Curve" id="Curve_bsua7"]
+_limits = [0.0, 1.0, 0.0, 4.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(4, 0.63114744), -0.62060905, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_xpgqn"]
-curve_y = SubResource("Curve_mr0vr")
+[sub_resource type="CurveTexture" id="CurveTexture_os5xw"]
+texture_mode = 1
+curve = SubResource("Curve_bsua7")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7i53r"]
-lifetime_randomness = 0.62
-direction = Vector3(-0.44, 1, 0)
-spread = 6.045
-initial_velocity_min = 3.0
-initial_velocity_max = 10.88
-directional_velocity_min = 1.0
-directional_velocity_max = 1.0
-directional_velocity_curve = SubResource("CurveXYZTexture_xpgqn")
-gravity = Vector3(0, -4.295, 0)
-damping_min = 0.47000003
-damping_max = 2.02
-attractor_interaction_enabled = false
+[sub_resource type="Gradient" id="Gradient_tur5m"]
+offsets = PackedFloat32Array(0, 0.08219178, 0.84246576)
+colors = PackedColorArray(1, 1, 1, 1, 0.49657536, 0.49657536, 0.49657536, 1, 0, 0, 0, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tur5m"]
-albedo_color = Color(0.16565639, 0.16565642, 0.16565639, 1)
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_shwxl"]
+gradient = SubResource("Gradient_tur5m")
+use_hdr = true
 
-[sub_resource type="SphereMesh" id="SphereMesh_shwxl"]
-material = SubResource("StandardMaterial3D_tur5m")
+[sub_resource type="Curve" id="Curve_tur5m"]
+_limits = [0.0, 1.4344252, 0.0, 1.0]
+_data = [Vector2(0.06918239, 0.073770404), 0.0, 0.0, 0, 0, Vector2(1, 1.4344252), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_shwxl"]
+curve = SubResource("Curve_tur5m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_estox"]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(-0.3, 1, 0)
+spread = 0.0
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+scale_max = 1.1999999
+scale_curve = SubResource("CurveTexture_shwxl")
+color_ramp = SubResource("GradientTexture1D_shwxl")
+alpha_curve = SubResource("CurveTexture_os5xw")
 
 [node name="TestOcean" type="Node3D"]
 
@@ -73,11 +96,13 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("BoxShape3D_jwtj2")
 
-[node name="Smoke" type="GPUParticles3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.190166, 4.760246, 0)
-amount = 100
-process_material = SubResource("ParticleProcessMaterial_7i53r")
-draw_pass_1 = SubResource("SphereMesh_shwxl")
+[node name="Smoke Particles" type="GPUParticles3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1912985, 4.805275, 0)
+material_override = SubResource("ShaderMaterial_estox")
+amount = 20
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_estox")
+draw_pass_1 = ExtResource("4_7i53r")
 
 [node name="DepthProbes" type="Node3D" parent="RigidBody3D"]
 
